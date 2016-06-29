@@ -1,0 +1,11 @@
+package com.projetinho.projetolabmoveis;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Alysson on 29/06/2016.
+ */
+public class Lembrete {
+    private String local;//deve ser modificado para receber o objeto do mapa
+    private ArrayList<String> lembretes;
+}
