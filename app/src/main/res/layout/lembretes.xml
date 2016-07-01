@@ -13,7 +13,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:id="@+id/caixaLembretes">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,5 +69,7 @@
                 android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
+
     </RelativeLayout>
+
 </RelativeLayout>
