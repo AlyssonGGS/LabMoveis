@@ -22,7 +22,7 @@ public class Lembretes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lembretes);
+        setContentView(R.layout.lembretes);
         //-----------------------------------------------------------//
         ArrayList<Lembrete> lembretes = new ArrayList<Lembrete>();
         lembretes.add(new Lembrete("casa"));
@@ -31,8 +31,8 @@ public class Lembretes extends AppCompatActivity {
         lembretes.get(0).addLembrete("Ola3");
         //----------------------------------------------------------//
 
-        RelativeLayout myLayout = (RelativeLayout)findViewById(R.id.exibeLembretes);
-        generateLembreteLayout(lembretes.get(0),myLayout);
+        //RelativeLayout myLayout = (RelativeLayout)findViewById(R.id.exibeLembretes);
+        //generateLembreteLayout(lembretes.get(0),myLayout);
         //os dados do DB têm que preencher algo parecido com isso para gerar as string do adapter
         final ArrayList<String> locaisString = new ArrayList<String>();
         /////////////////////////////////////////////////////////////////////////////////////////
@@ -63,12 +63,15 @@ public class Lembretes extends AppCompatActivity {
 
     private void generateLembreteLayout(Lembrete l,RelativeLayout rl)
     {
-        RelativeLayout ll = (RelativeLayout)findViewById(R.id.exibeLembretes);
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        TextView t;
+        int i = 0;
         for(String s : l.getLembretes()) {
-            TextView t = new TextView(this);
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            t = new TextView(this);
             t.setText(s);
-            ll.addView(t, lp);
+            t.setId(i);
+            i++;
+            //ll.addView(t, lp);
         }
     }
 }
