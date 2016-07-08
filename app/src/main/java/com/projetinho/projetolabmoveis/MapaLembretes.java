@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -41,11 +42,14 @@ public class MapaLembretes extends FragmentActivity implements OnMapReadyCallbac
             public void onMapClick(LatLng latLng) {
                 if(canAddMarker) {
                     // Creating a marker
-                    MarkerOptions markerOptions = new MarkerOptions();
-                    // Setting the position for the marker
-                    markerOptions.position(latLng);
-                    // Placing a marker on the touched position
-                    mMap.addMarker(markerOptions);
+                    MarkerOptions marker = new MarkerOptions();
+                    marker.position(latLng);
+                    mMap.addMarker(marker);
+
+                    //Setting the button visible
+                    Button b = (Button)findViewById(R.id.addMarkerButton);
+                    b.setVisibility(View.VISIBLE);
+
                     canAddMarker = false;
                 }
             }
@@ -53,7 +57,9 @@ public class MapaLembretes extends FragmentActivity implements OnMapReadyCallbac
     }
 
     public void addMarker(View v){
-        Log.d("1","Entrou");
+        //Setting the button invisible
+        Button b = (Button)findViewById(R.id.addMarkerButton);
+        b.setVisibility(View.INVISIBLE);
         canAddMarker = true;
     }
 }

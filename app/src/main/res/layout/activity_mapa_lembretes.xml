@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         tools:context="com.projetinho.projetolabmoveis.MapaLembretes" />
     <Button
-    android:id="@+id/angry_btn"
+    android:id="@+id/addMarkerButton"
 
     android:text="+"
     android:textColor="#FFFFFF"

@@ -1,6 +1,7 @@
 package com.projetinho.projetolabmoveis;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,5 +74,9 @@ public class Lembretes extends AppCompatActivity {
             i++;
             //ll.addView(t, lp);
         }
+    }
+    public void toMap(View v){
+        Intent it = new Intent(Lembretes.this, MapaLembretes.class);
+        startActivity(it);
     }
 }
