@@ -10,7 +10,14 @@
         android:layout_alignParentStart="false"
         android:id="@+id/lembretes">
 
+<<<<<<< HEAD
     </RelativeLayout>
+=======
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true">
+>>>>>>> origin/master
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -62,6 +69,7 @@
             android:layout_alignRight="@+id/textView2"
             android:layout_alignEnd="@+id/textView2" />
 
+<<<<<<< HEAD
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +78,18 @@
             android:layout_below="@+id/lembrete"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
+=======
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Map"
+                android:id="@+id/buttonMap"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:onClick="toMap" />
+>>>>>>> origin/master
 
+        </RelativeLayout>
     </RelativeLayout>
-
 </RelativeLayout>

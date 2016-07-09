@@ -1,6 +1,7 @@
 package com.projetinho.projetolabmoveis;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -91,6 +92,7 @@ public class Lembretes extends AppCompatActivity {
             rl.addView(t, lp);
         }
     }
+<<<<<<< HEAD
 
     @Override
     public void onStart() {
@@ -130,5 +132,10 @@ public class Lembretes extends AppCompatActivity {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+=======
+    public void toMap(View v){
+        Intent it = new Intent(Lembretes.this, MapaLembretes.class);
+        startActivity(it);
+>>>>>>> origin/master
     }
 }
