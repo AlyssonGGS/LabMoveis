@@ -4,27 +4,26 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:id="@+id/lembretes">
-
-<<<<<<< HEAD
-    </RelativeLayout>
-=======
-        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true">
->>>>>>> origin/master
 
-    <RelativeLayout
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/lembretes">
+
+        </TableLayout>
+
+        <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:id="@+id/caixaLembretes"
-        android:layout_below="@+id/lembretes">
+            android:layout_below="@+id/lembretes">
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,7 +68,6 @@
             android:layout_alignRight="@+id/textView2"
             android:layout_alignEnd="@+id/textView2" />
 
-<<<<<<< HEAD
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,7 +76,6 @@
             android:layout_below="@+id/lembrete"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
-=======
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
@@ -88,8 +85,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:onClick="toMap" />
->>>>>>> origin/master
 
-        </RelativeLayout>
     </RelativeLayout>
+
+    </RelativeLayout>
+
 </RelativeLayout>

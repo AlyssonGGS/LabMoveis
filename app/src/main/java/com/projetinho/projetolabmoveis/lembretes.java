@@ -1,18 +1,13 @@
 package com.projetinho.projetolabmoveis;
 
-import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -21,8 +16,6 @@ import android.widget.TextView;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -38,6 +31,8 @@ public class Lembretes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lembretes);
+        Intent check = new Intent(this,CheckDist.class);
+        startService(check);
         //-----------------------------------------------------------//
         final ArrayList<Lembrete> lembretes = new ArrayList<Lembrete>();
         lembretes.add(new Lembrete("casa"));
@@ -58,7 +53,7 @@ public class Lembretes extends AppCompatActivity {
                 String texto = t.getText().toString();
                 if (texto.length() > 0) {
                     lembretes.get(0).addLembrete(t.getText().toString());
-                    RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.lembretes);
+                    TableLayout myLayout = (TableLayout) findViewById(R.id.lembretes);
                     generateLembreteLayout(lembretes.get(0), myLayout,id++);
                 }
             }
@@ -78,21 +73,16 @@ public class Lembretes extends AppCompatActivity {
         s.setAdapter(adapter);
     }
 
-    private void generateLembreteLayout(Lembrete l, RelativeLayout rl,int id) {
+    private void generateLembreteLayout(Lembrete l, TableLayout gl,int id) {
         TextView t;
-        for (String s : l.getLembretes()) {
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        for (String s : l.getLembretes())
+        {
             t = new TextView(this);
             t.setText(s);
             t.setId(id);
-            if (id > 0)
-                lp.addRule(RelativeLayout.BELOW, id - 1);
-            else
-                lp.addRule(RelativeLayout.BELOW, R.id.lembretes);
-            rl.addView(t, lp);
+            gl.addView(t);
         }
     }
-<<<<<<< HEAD
 
     @Override
     public void onStart() {
@@ -132,10 +122,9 @@ public class Lembretes extends AppCompatActivity {
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
-=======
+    }
     public void toMap(View v){
         Intent it = new Intent(Lembretes.this, MapaLembretes.class);
         startActivity(it);
->>>>>>> origin/master
     }
 }
