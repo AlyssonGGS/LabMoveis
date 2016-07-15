@@ -14,54 +14,38 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.telecom.Connection;
-<<<<<<< HEAD
 import android.util.Log;
-=======
->>>>>>> origin/master
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
-<<<<<<< HEAD
 import com.google.android.gms.maps.model.LatLng;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-=======
->>>>>>> origin/master
 
 public class CheckDist extends Service implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     GoogleApiClient apiClient;
     Location myLastLocation;
-<<<<<<< HEAD
     DBManager dbManager = new DBManager(this);
     ArrayList<Lembrete> lembretes;
 
     public void onCreate() {
-        if(apiClient == null) {
+        if (apiClient == null) {
             apiClient = new GoogleApiClient.Builder(this).
                     addConnectionCallbacks(this).
                     addOnConnectionFailedListener(this).
                     addApi(LocationServices.API).build();
         }
-=======
-
-    public void onCreate() {
-        apiClient = new GoogleApiClient.Builder(this).
-                addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
->>>>>>> origin/master
     }
     //acontece quando começa o serviço
     //quando adicionar um novo local este método deveria ser executado de nov
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-<<<<<<< HEAD
         lembretes = dbManager.getLembretes();
-=======
->>>>>>> origin/master
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -73,17 +57,13 @@ public class CheckDist extends Service implements GoogleApiClient.ConnectionCall
                 myLastLocation = LocationServices.FusedLocationApi.getLastLocation(apiClient);
                 while(true){
                    try {
-<<<<<<< HEAD
                         Thread.sleep(1000 * 20);//miliscecs * secs
-=======
                         Thread.sleep(5000);
->>>>>>> origin/master
                     }catch (Exception e) {
                         stopSelf();
                         apiClient.disconnect();
                     }
                     //pegar informações do DB
-<<<<<<< HEAD
                     lembretes = dbManager.getLembretes();
                     if(myLastLocation != null) {
                         //fazer os testes de proximidades
@@ -107,21 +87,6 @@ public class CheckDist extends Service implements GoogleApiClient.ConnectionCall
         }).start();
         return Service.START_STICKY;
     }
-
-
-=======
-                    //fazer os testes de proximidades
-                    //caso esteja proximo
-                    //criar e exibir uma mensagem de proximidade com os lembretes cadastrados
-                    if(myLastLocation != null)
-                        showLocationMessage(myLastLocation.toString());
-                }
-            }
-        });
-        return Service.START_STICKY;
-    }
-
->>>>>>> origin/master
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -139,24 +104,16 @@ public class CheckDist extends Service implements GoogleApiClient.ConnectionCall
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-<<<<<<< HEAD
-        Log.d("erro",connectionResult.getErrorMessage());
-=======
 
->>>>>>> origin/master
     }
 
     public void showLocationMessage(String m)
     {
-<<<<<<< HEAD
-=======
         final Context ctx = this;
->>>>>>> origin/master
         final String message = m;
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-<<<<<<< HEAD
                 Log.d("hahaha","whiskas!");
                 Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
             }
@@ -186,10 +143,4 @@ public class CheckDist extends Service implements GoogleApiClient.ConnectionCall
 
         return Radius * c;
     }
-=======
-                Toast.makeText(ctx,message,Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
->>>>>>> origin/master
 }

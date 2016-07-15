@@ -27,10 +27,9 @@ public class Lembretes extends AppCompatActivity {
      */
     private GoogleApiClient client;
     int id = 0;
-<<<<<<< HEAD
-    ArrayList<Lembrete> lembretes;
-=======
->>>>>>> origin/master
+    ArrayList<String> lembretes;
+    DBManager dbManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +37,15 @@ public class Lembretes extends AppCompatActivity {
         Intent check = new Intent(this,CheckDist.class);
         startService(check);
         //-----------------------------------------------------------//
-<<<<<<< HEAD
-
-=======
-        final ArrayList<Lembrete> lembretes = new ArrayList<Lembrete>();
-        lembretes.add(new Lembrete("casa"));
->>>>>>> origin/master
+        dbManager = new DBManager(this);
+        lembretes = dbManager.getLembretesStr();
         //----------------------------------------------------------//
-
         //os dados do DB têm que preencher algo parecido com isso para gerar as string do adapter
-        final ArrayList<String> locaisString = new ArrayList<String>();
-        locaisString.add("Marcar no mapa");
         /////////////////////////////////////////////////////////////////////////////////////////
-        setSpinnerContent(locaisString);
+        setSpinnerContent(lembretes);
         //quando clicar nesse botão tem que adicionar um novo objeto Lembrete
         ImageButton b = (ImageButton) findViewById(R.id.imageButton);
-        b.setOnClickListener(new View.OnClickListener() {
+        /*b.setOnClickListener(new View.OnClickListener() {
             @Override
             //esse metodo está modificando errado
             public void onClick(View v) {
@@ -65,7 +57,7 @@ public class Lembretes extends AppCompatActivity {
                     generateLembreteLayout(lembretes.get(0), myLayout,id++);
                 }
             }
-        });
+        });*/
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -74,6 +66,7 @@ public class Lembretes extends AppCompatActivity {
     //usado para preencher a lista de locais marcado pelo usuário
     //aqui deve ser feito algo para pegar os dados do sqlite e do maps para que possa preencher as opções
     private void setSpinnerContent(ArrayList<String> locaisString) {
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, locaisString);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

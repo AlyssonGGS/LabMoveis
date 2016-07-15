@@ -43,7 +43,7 @@ public class DBManager {
             lembretes = new ArrayList<Lembrete>();
             Lembrete aux;
             do{
-                aux = new Lembrete("lalalal",(cursor.getString(1) +","+ cursor.getString(2)));
+                aux = new Lembrete(String.valueOf(cursor.getString(1)),(cursor.getString(1) +","+ cursor.getString(2)));
                 lembretes.add(aux);
             }while(cursor.moveToNext());
         }
