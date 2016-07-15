@@ -5,24 +5,25 @@
 
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true">
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false"
             android:id="@+id/lembretes">
 
         </TableLayout>
 
         <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/caixaLembretes"
+        android:layout_height="wrap_content"
+            android:id="@+id/caixaLembretes"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="false"
             android:layout_below="@+id/lembretes">
 
         <TextView
@@ -31,11 +32,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Lembrete"
             android:id="@+id/textView"
-            android:layout_marginLeft="55dp"
-            android:layout_marginStart="55dp"
-            android:layout_alignTop="@+id/textView2"
+            android:layout_below="@+id/buttonMap"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:singleLine="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,12 +43,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Local"
             android:id="@+id/textView2"
-            android:layout_marginTop="81dp"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/textView"
-            android:layout_toEndOf="@+id/textView"
-            android:layout_marginLeft="101dp"
-            android:layout_marginStart="101dp" />
+            android:layout_below="@+id/lembrete"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:singleLine="true" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -64,16 +62,16 @@
             android:layout_height="wrap_content"
             android:id="@+id/locais"
             android:spinnerMode="dropdown"
-            android:layout_below="@+id/imageButton"
-            android:layout_alignRight="@+id/textView2"
-            android:layout_alignEnd="@+id/textView2" />
+            android:layout_below="@+id/textView2"
+            android:layout_alignRight="@+id/lembrete"
+            android:layout_alignEnd="@+id/lembrete" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageButton"
             android:src="@drawable/abc_ic_star_black_16dp"
-            android:layout_below="@+id/lembrete"
+            android:layout_alignBottom="@+id/lembrete"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
             <Button
@@ -82,9 +80,11 @@
                 android:layout_height="wrap_content"
                 android:text="Map"
                 android:id="@+id/buttonMap"
+                android:onClick="toMap"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:onClick="toMap" />
+                android:layout_alignParentRight="false"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="false" />
 
     </RelativeLayout>
 

@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -44,19 +45,20 @@ public class Lembretes extends AppCompatActivity {
         setSpinnerContent(lembretes);
         //quando clicar nesse botão tem que adicionar um novo objeto Lembrete
         ImageButton b = (ImageButton) findViewById(R.id.imageButton);
-        /*b.setOnClickListener(new View.OnClickListener() {
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
             //esse metodo está modificando errado
             public void onClick(View v) {
                 TextView t = (TextView) findViewById(R.id.lembrete);
+                String local = ((Spinner)findViewById(R.id.locais)).getSelectedItem().toString();
                 String texto = t.getText().toString();
+                t.setText("");
                 if (texto.length() > 0) {
-                    lembretes.get(0).addLembrete(t.getText().toString());
                     TableLayout myLayout = (TableLayout) findViewById(R.id.lembretes);
-                    generateLembreteLayout(lembretes.get(0), myLayout,id++);
+                    generateLembreteLayout(texto,local, myLayout,id++);
                 }
             }
-        });*/
+        });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -73,15 +75,22 @@ public class Lembretes extends AppCompatActivity {
         s.setAdapter(adapter);
     }
 
-    private void generateLembreteLayout(Lembrete l, TableLayout gl,int id) {
-        TextView t;
-        for (String s : l.getLembretes())
+    private void generateLembreteLayout(String lemb,String local, TableLayout gl,int id) {
+        RelativeLayout r = (RelativeLayout)getLayoutInflater().inflate(R.layout.lembrete_layout,null,true);
+        //layout que segura o botao e os textos
+        View relative = r.getChildAt(0);
+        TextView t = (TextView)((ViewGroup)relative).getChildAt(0);
+        t.setText(lemb);
+        TextView t2 = (TextView)((ViewGroup)relative).getChildAt(1);
+        t2.setText(t2.getText() + local);
+        gl.addView(r);
+
+        /*for (String s : l.getLembretes())
         {
             t = new TextView(this);
             t.setText(s);
             t.setId(id);
-            gl.addView(t);
-        }
+        }*/
     }
 
     @Override
