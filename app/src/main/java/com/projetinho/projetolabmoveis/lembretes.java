@@ -1,5 +1,7 @@
 package com.projetinho.projetolabmoveis;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -39,9 +41,6 @@ public class Lembretes extends AppCompatActivity {
         //-----------------------------------------------------------//
         dbManager = new DBManager(this);
         lembretes = dbManager.getLembretesStr();
-        //----------------------------------------------------------//
-        //os dados do DB têm que preencher algo parecido com isso para gerar as string do adapter
-        /////////////////////////////////////////////////////////////////////////////////////////
         setSpinnerContent(lembretes);
         //quando clicar nesse botão tem que adicionar um novo objeto Lembrete
         ImageButton b = (ImageButton) findViewById(R.id.imageButton);
@@ -88,7 +87,8 @@ public class Lembretes extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-
+        NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        mNotifyMgr.cancelAll();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();

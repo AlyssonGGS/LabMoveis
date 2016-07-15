@@ -1,6 +1,8 @@
 package com.projetinho.projetolabmoveis;
 
 import android.Manifest;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.NotificationCompat;
 import android.telecom.Connection;
 import android.util.Log;
 import android.widget.Toast;
@@ -58,7 +61,6 @@ public class CheckDist extends Service implements GoogleApiClient.ConnectionCall
                 while(true){
                    try {
                         Thread.sleep(1000 * 20);//miliscecs * secs
-                        Thread.sleep(5000);
                     }catch (Exception e) {
                         stopSelf();
                         apiClient.disconnect();
@@ -72,11 +74,13 @@ public class CheckDist extends Service implements GoogleApiClient.ConnectionCall
                         {
                             double distance = CalculationByDistance(myLat,l.getLocation());
                             //caso esteja proximo
-                            if(distance < 20)
+                            //definir o raio aqui
+                            if(distance < 20) {
+                                //criar e exibir uma mensagem de proximidade com os lembretes cadastrados
                                 showLocationMessage(String.valueOf(distance));
+                                stopSelf();
+                            }
                         }
-                        //criar e exibir uma mensagem de proximidade com os lembretes cadastrados
-
                     }
                     else
                     {
@@ -111,14 +115,24 @@ public class CheckDist extends Service implements GoogleApiClient.ConnectionCall
     {
         final Context ctx = this;
         final String message = m;
+
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                Log.d("hahaha","whiskas!");
-                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+                Intent resultIntent = new Intent(ctx, Lembretes.class);
+                PendingIntent resultPendingIntent = PendingIntent.getActivity(ctx,0,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+                NotificationCompat.Builder mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
+                                .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
+                                .setContentTitle("Ei, Psiu! Já chegamos!")
+                                .setContentText(message);
+                mBuilder.setContentIntent(resultPendingIntent);
+                NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                mNotifyMgr.notify(001, mBuilder.build());
+
             }
         });
     }
+
     public double CalculationByDistance(LatLng StartP, LatLng EndP) {
         int Radius = 6371;// radius of earth in Km
         double lat1 = StartP.latitude;
@@ -138,9 +152,6 @@ public class CheckDist extends Service implements GoogleApiClient.ConnectionCall
         int kmInDec = Integer.valueOf(newFormat.format(km));
         double meter = valueResult % 1000;
         int meterInDec = Integer.valueOf(newFormat.format(meter));
-        Log.d("erro", "" + valueResult + "   KM  " + kmInDec
-                + " Meter   " + meterInDec);
-
         return Radius * c;
     }
 }
