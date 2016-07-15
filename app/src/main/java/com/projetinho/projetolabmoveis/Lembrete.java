@@ -1,5 +1,7 @@
 package com.projetinho.projetolabmoveis;
 
+import android.location.Location;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -8,16 +10,13 @@ import java.util.ArrayList;
  * Created by Alysson on 29/06/2016.
  */
 public class Lembrete {
-    LatLng pos;
-    private String local;//deve ser modificado para receber o objeto do mapa
+    Local local;
     private ArrayList<String> lembretes;
 
-    public Lembrete(String local,String latlng)
+    public Lembrete(Local l)
     {
-        this.local = local;
+        this.local = l;
         lembretes = new ArrayList<String>();
-        String coord[] = latlng.split(",");
-        pos = new LatLng(Double.parseDouble(coord[0]),Double.parseDouble(coord[1]));
     }
 
     public ArrayList<String> getLembretes()
@@ -26,11 +25,11 @@ public class Lembrete {
     }
     public String getLocalString()
     {
-        return local;
+        return local.toString();
     }
     public void addLembrete(String lembrete)
     {
          lembretes.add(lembrete);
     }
-    public LatLng getLocation(){return pos;}
+    public Local getLocation(){return local;}
 }

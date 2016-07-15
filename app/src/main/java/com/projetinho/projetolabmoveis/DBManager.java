@@ -1,6 +1,7 @@
 package com.projetinho.projetolabmoveis;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -42,8 +43,10 @@ public class DBManager {
         if(cursor != null && cursor.moveToFirst()){
             lembretes = new ArrayList<Lembrete>();
             Lembrete aux;
+            Local localAux;
             do{
-                aux = new Lembrete(String.valueOf(cursor.getString(1)),(cursor.getString(1) +","+ cursor.getString(2)));
+                localAux = new Local(Integer.parseInt(cursor.getString(0)),cursor.getString(1) +","+ cursor.getString(2));
+                aux = new Lembrete(localAux);
                 lembretes.add(aux);
             }while(cursor.moveToNext());
         }

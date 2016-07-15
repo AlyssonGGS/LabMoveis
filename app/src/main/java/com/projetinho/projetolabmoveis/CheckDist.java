@@ -72,7 +72,7 @@ public class CheckDist extends Service implements GoogleApiClient.ConnectionCall
                         LatLng myLat = new LatLng(myLastLocation.getLatitude(),myLastLocation.getLongitude());
                         for(Lembrete l : lembretes)
                         {
-                            double distance = CalculationByDistance(myLat,l.getLocation());
+                            double distance = CalculationByDistance(myLat,l.getLocation().pos);
                             //caso esteja proximo
                             //definir o raio aqui
                             if(distance < 20) {
