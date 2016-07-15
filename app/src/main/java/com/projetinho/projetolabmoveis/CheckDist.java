@@ -57,21 +57,25 @@ public class CheckDist extends Service implements GoogleApiClient.ConnectionCall
                 myLastLocation = LocationServices.FusedLocationApi.getLastLocation(apiClient);
                 while(true){
                    try {
-                        Thread.sleep(5000);
+                        Thread.sleep(1000 * 20);//miliscecs * secs
                     }catch (Exception e) {
                         stopSelf();
                         apiClient.disconnect();
                     }
                     //pegar informações do DB
                     lembretes = dbManager.getLembretes();
-                    //fazer os testes de proximidades
-                    //caso esteja proximo
-                    //criar e exibir uma mensagem de proximidade com os lembretes cadastrados
                     if(myLastLocation != null) {
+                        //fazer os testes de proximidades
                         LatLng myLat = new LatLng(myLastLocation.getLatitude(),myLastLocation.getLongitude());
-                        LatLng otherLat = new LatLng(myLastLocation.getLatitude(),myLastLocation.getLongitude());
-                        showLocationMessage(String.valueOf(CalculationByDistance(myLat,otherLat)));
-                        //showLocationMessage(myLastLocation.toString());
+                        for(Lembrete l : lembretes)
+                        {
+                            double distance = CalculationByDistance(myLat,l.getLocation());
+                            //caso esteja proximo
+                            if(distance < 20)
+                                showLocationMessage(String.valueOf(distance));
+                        }
+                        //criar e exibir uma mensagem de proximidade com os lembretes cadastrados
+
                     }
                     else
                     {
