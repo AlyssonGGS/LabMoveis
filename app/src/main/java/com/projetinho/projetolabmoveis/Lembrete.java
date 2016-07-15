@@ -18,7 +18,10 @@ public class Lembrete {
     {
         return lembretes;
     }
-
+    public String getLocalString()
+    {
+        return local;
+    }
     public void addLembrete(String lembrete)
     {
          lembretes.add(lembrete);
