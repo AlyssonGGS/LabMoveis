@@ -20,7 +20,7 @@ public class DBManager {
         db.execSQL(sql);
     }
 
-    public ArrayList<String> getLembretes(){
+    public ArrayList<String> getLembretesStr(){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String sql = "SELECT *FROM lembretes";
         Cursor cursor = db.rawQuery(sql, null);
@@ -34,5 +34,19 @@ public class DBManager {
         return lembretes;
     }
 
-
+    public ArrayList<Lembrete> getLembretes(){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String sql = "SELECT *FROM lembretes";
+        Cursor cursor = db.rawQuery(sql, null);
+        ArrayList<Lembrete> lembretes= null;
+        if(cursor != null && cursor.moveToFirst()){
+            lembretes = new ArrayList<Lembrete>();
+            Lembrete aux;
+            do{
+                aux = new Lembrete("lalalal",(cursor.getString(1) +","+ cursor.getString(2)));
+                lembretes.add(aux);
+            }while(cursor.moveToNext());
+        }
+        return lembretes;
+    }
 }

@@ -27,6 +27,7 @@ public class Lembretes extends AppCompatActivity {
      */
     private GoogleApiClient client;
     int id = 0;
+    ArrayList<Lembrete> lembretes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +35,7 @@ public class Lembretes extends AppCompatActivity {
         Intent check = new Intent(this,CheckDist.class);
         startService(check);
         //-----------------------------------------------------------//
-        final ArrayList<Lembrete> lembretes = new ArrayList<Lembrete>();
-        lembretes.add(new Lembrete("casa"));
+
         //----------------------------------------------------------//
 
         //os dados do DB têm que preencher algo parecido com isso para gerar as string do adapter

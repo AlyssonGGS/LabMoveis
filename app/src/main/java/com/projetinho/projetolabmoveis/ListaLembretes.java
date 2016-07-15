@@ -17,7 +17,7 @@ public class ListaLembretes extends AppCompatActivity{
         setContentView(R.layout.activity_lista_lembretes);
         ArrayList<String> lembretes = null;
         DBManager dbManager = new DBManager(this);
-        lembretes = dbManager.getLembretes();
+        lembretes = dbManager.getLembretesStr();
         ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lembretes);
         ListView listView = (ListView)findViewById(R.id.listViewLembretes);
         listView.setAdapter(adapter);

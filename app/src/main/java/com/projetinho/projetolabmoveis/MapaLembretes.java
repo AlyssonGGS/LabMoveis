@@ -42,7 +42,7 @@ public class MapaLembretes extends FragmentActivity implements OnMapReadyCallbac
         mMap = googleMap;
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)||(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED))
             mMap.setMyLocationEnabled(true);
-        ArrayList<String> marcadores = dbManager.getLembretes();
+        ArrayList<String> marcadores = dbManager.getLembretesStr();
         if(marcadores != null) {
             for (String linha : marcadores) {
                 String[] latLng = linha.split(",");
